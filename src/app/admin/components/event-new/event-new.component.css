@@ -1,0 +1,15 @@
+.event-new {
+    padding: 10px;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px - 60px);
+}
+.event-new .event-new__title {
+    font-size: 24px;
+    color: #292b2c;
+    line-height: 26px;
+    font-family: 'Arvo', serif;
+}
+.event-new .event-new__btn {
+    width: 100%;
+    cursor: pointer;
+}

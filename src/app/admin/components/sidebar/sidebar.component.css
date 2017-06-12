@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #ecf0f1;
+    height: calc(100vh - 56px - 60px);
+    margin-left: -15px;
+}
+.navbar .navbar__list {
+    display: inline-block;
+    padding: 0;
+}
+.navbar .navbar__list .navbar__item {
+    list-style: none;
+    text-align: center;    
+}
+.navbar .navbar__list .navbar__item .navbar__link {
+    color: #292b2c;
+    font-size: 16px;
+    line-height: 18px;
+    font-family: 'Arvo', serif;
+    padding: 5px 0;
+    text-decoration: none;
+}

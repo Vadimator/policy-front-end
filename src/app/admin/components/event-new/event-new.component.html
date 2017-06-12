@@ -1,0 +1,68 @@
+<loader [isShowLoader]="loader">
+    <section class="event-new">
+        <h2 class="event-new__title text-center">Create a new event</h2>
+        <form 
+            class="event-new__form" 
+            #eventForm="ngForm" 
+            novalidate
+            ENCTYPE = "multipart/form-data"
+            (ngSubmit)="showErrorOnSubmit(eventForm) && createEvent()"
+        >
+            <form-error [error]="error"></form-error>
+            <div class="form-group">
+                <field-item 
+                    label="Name" 
+                    [error]="error" 
+                    [customErrorCondition]="name.dirty"
+                >
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Enter name event"
+                        name="name"
+                        [(ngModel)]="event.name"
+                        #name="ngModel"
+                        required
+                    >
+                    <error-item [condition]="name.errors && name.errors.required">Name is required</error-item>
+                </field-item>
+            </div>
+            <div class="form-group">
+                <field-item 
+                    label="Description" 
+                    [error]="error" 
+                    [customErrorCondition]="description.dirty"
+                >
+                <textarea 
+                    #description="ngModel"
+                    name="description" 
+                    cols="30" 
+                    rows="10"
+                    [(ngModel)]="event.description"
+                    required
+                    class="form-control" 
+                ></textarea>
+                    <error-item [condition]="description.errors && description.errors.required">Descripton is required</error-item>
+                </field-item>
+            </div>
+            <div class="form-group">
+                <label>Select subject of your contract</label>
+                <select class="form-control" (change)="onChangeContract($event.target.value)">
+                    <option *ngFor="let contract of contracts"  [value]="contract.id">{{contract.subject}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>File</label>
+                <input 
+                    type="file" 
+                    class="form-control" 
+                    name="file"
+                    (change)="fileChangeEvent($event)"
+                    required
+                >
+            </div>
+            {{ event | json }}
+            <button type="submit" class="btn btn-success event-new__btn">Create</button>
+        </form>
+    </section>
+</loader>

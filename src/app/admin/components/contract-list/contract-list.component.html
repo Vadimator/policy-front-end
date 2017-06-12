@@ -1,0 +1,35 @@
+<section class="contract-list">
+    <h2 class="contract-list__title text-center">Contracts</h2>
+    <div class="contact-list__wrapper" *ngIf="contractList.length > 0">
+        <div class="contract-list__item" *ngFor="let contract of contractList">
+            <div class="contract-list__item-element">
+                <div class="contract-list__key">Created</div>
+                <div class="contract-list__text">{{ convertTime(contract.created) }}</div>
+            </div>
+            <div class="contract-list__item-element">
+                <div class="contract-list__key">Number of register</div>
+                <div class="contract-list__text">{{ contract.numberRegister }}</div>
+            </div>
+            <div class="contract-list__item-element">
+                <div class="contract-list__key">Subject</div>
+                <div class="contract-list__text">{{ contract.subject }}</div>
+            </div>
+            <div class="contract-list__item-element">
+                <div class="contract-list__key">Type of contract</div>
+                <div class="contract-list__text">{{ contract.type.name }}</div>
+            </div>
+            <div class="contract-list__item-element">
+                <div class="contract-list__key">VIN</div>
+                <div class="contract-list__text">{{ contract.vin }}</div>
+            </div>
+            <div class="contract-list__item-element">
+                <div class="contract-list__key">Closed</div>
+                <div class="contract-list__text">{{ convertTime(contract.closed) }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="contract-list__empty" *ngIf="contractList.length == 0">
+        You don't have any contacts yet
+        <a [routerLink]="['/admin/contract/new']" class="contract-list__btn">Create new contract</a>
+    </div>
+</section>

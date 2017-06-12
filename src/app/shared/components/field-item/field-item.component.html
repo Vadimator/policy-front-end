@@ -1,0 +1,21 @@
+<div class="field-item">
+    <ng-container *ngIf="label">
+        <label [attr.for]="inputId" class="form__label {{ labelTheme }}">{{label}}</label>
+    </ng-container>
+    <ng-content select="field-label"></ng-content>
+    <ng-content select="field-description"></ng-content>
+    <div class="field-item__input-wrapper" [hidden]="showInfo" #content>
+        <ng-content
+                select="checkbox-keywords, range, dropdown, range, input-link, calendar-inline, slider, promotion-type, age-group-list, currency-list, box, country-list, checkbox-campaign, checkbox-gender, image-upload, checkbox-group, hashtag, interests, autocomplete, input, input-group, select, textarea, calendar, radio-cards, expiration-date, checkbox, style-category-group"
+        ></ng-content>
+    </div>
+    <div>
+        <ng-content *ngIf="showInfo" select=".field-item-info, [field-item-info], field-item-info"></ng-content>
+    </div>
+    <div>
+        <ng-content select="error-item" *ngIf="customErrorCondition"></ng-content>
+        <ng-container *ngIf="getField() || inputName">
+            <error-item *ngFor="let item of getError(inputName)" [condition]="serverErrorCondition">{{item}}</error-item>
+        </ng-container>
+    </div>
+</div>

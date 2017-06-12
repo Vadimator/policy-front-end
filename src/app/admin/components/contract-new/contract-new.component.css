@@ -1,0 +1,16 @@
+.contract-new {
+    padding: 10px;
+}
+.contract-new .contract-new__title {
+    font-size: 24px;
+    color: #292b2c;
+    line-height: 26px;
+    font-family: 'Arvo', serif;
+}
+.contract-new  .contract-new__form {
+
+}
+.contract-new  .contract-new__btn {
+    width: 100%;
+    cursor: pointer;
+} 

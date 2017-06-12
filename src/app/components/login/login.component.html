@@ -1,0 +1,59 @@
+<div class="login">
+    <div class="container">
+        <div class="row">
+            <section class="col-12 d-flex flex-column align-items-center registration">
+                <h2 class="registration__title">Sign in to Insurance</h2>
+                <form 
+                    class="registration__form" 
+                    #loginForm="ngForm" 
+                    novalidate
+                    (ngSubmit)="showErrorOnSubmit(loginForm) && login()"
+                >
+                    <form-error [error]="error"></form-error>
+                    <div class="form-group">
+                        <field-item 
+                            label="Email address" 
+                            [error]="error" 
+                            [customErrorCondition]="(email.dirty || email.touched)"
+                        >
+                            <input 
+                                type="email" 
+                                class="form-control" 
+                                placeholder="Enter email"
+                                name="email"
+                                [(ngModel)]="user.email"
+                                #email="ngModel"
+                                required
+                                pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+                            >
+                            <error-item [condition]="email.errors && email.errors.required">Email is required</error-item>
+                            <error-item [condition]="email.errors && email.errors.pattern">Email is not valid</error-item>
+                        </field-item>
+                    </div>
+                    <div class="form-group">
+                        <field-item 
+                                label="Password" 
+                                [error]="error" 
+                                [customErrorCondition]="(password.dirty || password.touched)"
+                            >
+                                <input 
+                                    type="password" 
+                                    class="form-control" 
+                                    placeholder="Password"
+                                    name="password"
+                                    required
+                                    #password="ngModel"
+                                    [(ngModel)]="user.password"
+                                >
+                                <error-item [condition]="password.errors && password.errors.required">Password is required</error-item>
+                            </field-item>
+                    </div>
+                    <button type="submit" class="btn btn-primary registration__btn">Sign in</button>
+                </form>
+                <div class="registration__new">
+                    New to Navbar? <a [routerLink]="['/register']" class="registration__link">Create an account.</a>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded navbar-inverse bg-inverse">
+    <a class="navbar-brand" href="#">Insurance</a>
+    <div class="ml-auto p-2 navbar__link">
+      <ng-container *ngIf=!getIsLogin()>
+        <a [routerLink]="['/login']" class="navbar__link-item">Sign in</a> 
+            or 
+        <a [routerLink]="['/register']" class="navbar__link-item">Sign up</a>
+      </ng-container>
+      <ng-container *ngIf="getIsLogin()">
+         <a (click)="signOut()" class="navbar__link-item">Sign Out</a>
+      </ng-container>
+    </div>
+</nav>

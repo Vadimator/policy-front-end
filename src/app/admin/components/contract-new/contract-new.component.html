@@ -1,0 +1,74 @@
+<loader [isShowLoader]="loader">
+    <section class="contract-new">
+        <h2 class="contract-new__title text-center">Create a new contract</h2>
+        <form 
+            class="contract-new__form" 
+            #contractForm="ngForm" 
+            novalidate
+            (ngSubmit)="showErrorOnSubmit(contractForm) && createContract()"
+        >
+            <form-error [error]="error"></form-error>
+            <div class="form-group">
+                <field-item 
+                    label="Subject" 
+                    [error]="error" 
+                    [customErrorCondition]="subject.dirty"
+                >
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Enter subject"
+                        name="subject"
+                        [(ngModel)]="contract.subject"
+                        #subject="ngModel"
+                        required
+                    >
+                    <error-item [condition]="subject.errors && subject.errors.required">Subject is required</error-item>
+                </field-item>
+            </div>
+            <div class="form-group">
+                <label>Type of contract</label>
+                <select class="form-control" (change)="onChangeType($event.target.value)">
+                    <option *ngFor="let type of contractTypes"  [value]="type.id">{{type.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <field-item 
+                        label="VIN" 
+                        [error]="error" 
+                        [customErrorCondition]="vin.dirty"
+                    >
+                        <input 
+                            type="number" 
+                            class="form-control" 
+                            placeholder="Enter VIN"
+                            name="vin"
+                            required
+                            #vin="ngModel"
+                            [(ngModel)]="contract.vin"
+                        >
+                        <error-item [condition]="vin.errors && vin.errors.required">VIN is required</error-item>
+                    </field-item>
+            </div>
+            <div class="form-group">
+                <field-item 
+                        label="Number register" 
+                        [error]="error" 
+                        [customErrorCondition]="numberRegister.dirty"
+                    >
+                        <input 
+                            type="number" 
+                            class="form-control" 
+                            placeholder="Enter register number"
+                            name="numberRegister"
+                            required
+                            #numberRegister="ngModel"
+                            [(ngModel)]="contract.numberRegister"
+                        >
+                        <error-item [condition]="numberRegister.errors && numberRegister.errors.required">Number register is required</error-item>
+                    </field-item>
+            </div>
+            <button type="submit" class="btn btn-success contract-new__btn">Create</button>
+        </form>
+    </section>
+</loader>

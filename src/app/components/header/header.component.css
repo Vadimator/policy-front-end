@@ -1,0 +1,9 @@
+.navbar__link {
+    color: #586069;
+    font-family: 'Arvo', serif;
+}
+.navbar__link .navbar__link-item {
+    cursor: pointer;
+    color: #fff;
+    font-family: 'Arvo', serif;
+}

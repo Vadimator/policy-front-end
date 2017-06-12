@@ -1,0 +1,77 @@
+<loader [isShowLoader]="loader">
+    <div class="reg">
+        <div class="container">
+            <div class="row">
+                <section class="col-12 d-flex flex-column align-items-center registration">
+                    <h2 class="registration__title">Join to Insurance</h2>
+                    <form 
+                        #registerForm="ngForm" 
+                        class="registration__form" 
+                        novalidate
+                        (ngSubmit)="showErrorOnSubmit(registerForm) && user.confirmPassword ===  user.password && register()"
+                    >
+                        <form-error [error]="error"></form-error>
+                        <div class="form-group">
+                            <field-item 
+                                label="Email address" 
+                                [error]="error" 
+                                [customErrorCondition]="(email.dirty || email.touched)"
+                            >
+                                <input 
+                                    type="email" 
+                                    class="form-control" 
+                                    placeholder="Enter email"
+                                    name="email"
+                                    [(ngModel)]="user.email"
+                                    #email="ngModel"
+                                    required
+                                    pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+                                >
+                                <error-item [condition]="email.errors && email.errors.required">Email is required</error-item>
+                                <error-item [condition]="email.errors && email.errors.pattern">Email is not valid</error-item>
+                            </field-item>
+                        </div>
+                        <div class="form-group">
+                            <field-item 
+                                label="Password" 
+                                [error]="error" 
+                                [customErrorCondition]="(password.dirty || password.touched)"
+                            >
+                                <input 
+                                    type="password" 
+                                    class="form-control" 
+                                    placeholder="Password"
+                                    name="password"
+                                    required
+                                    #password="ngModel"
+                                    [(ngModel)]="user.password"
+                                >
+                                <error-item [condition]="password.errors && password.errors.required">Password is required</error-item>
+                            </field-item>
+                        </div>
+                        <div class="form-group">
+                            <field-item 
+                                label="Cofirm password" 
+                                [error]="error" 
+                                [customErrorCondition]="(confirmPassword.dirty || confirmPassword.touched)"
+                            >
+                                <input 
+                                    type="password" 
+                                    class="form-control" 
+                                    placeholder="Confirm password"
+                                    name="password"
+                                    [(ngModel)]="user.confirmPassword"
+                                    required
+                                    #confirmPassword="ngModel"
+                                >
+                                <error-item [condition]="confirmPassword.errors && confirmPassword.errors.required">Confirm password is required</error-item>
+                                <error-item [condition]="user.confirmPassword !==  user.password">Password must be the same</error-item>
+                            </field-item>
+                        </div>
+                        <button type="submit" class="btn btn-primary registration__btn">Create an account</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</loader>
